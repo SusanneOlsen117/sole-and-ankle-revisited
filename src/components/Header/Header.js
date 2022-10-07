@@ -3,9 +3,11 @@ import styled from "styled-components/macro";
 
 import { COLORS, WEIGHTS, QUERIES } from "../../constants";
 import Logo from "../Logo";
+import UnstyledButton from "../UnstyledButton";
 import SuperHeader from "../SuperHeader";
 import MobileMenu from "../MobileMenu";
 import Icon from "../Icon";
+import VisuallyHidden from "../VisuallyHidden";
 
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
@@ -19,22 +21,32 @@ const Header = () => {
     <header>
       <SuperHeader />
       <MainHeader>
-        <Side>
+        <LogoWrapper>
           <Logo />
-        </Side>
-        <Nav>
+        </LogoWrapper>
+        <DesktopNav>
           <NavLink href="/sale">Sale</NavLink>
           <NavLink href="/new">New&nbsp;Releases</NavLink>
           <NavLink href="/men">Men</NavLink>
           <NavLink href="/women">Women</NavLink>
           <NavLink href="/kids">Kids</NavLink>
           <NavLink href="/collections">Collections</NavLink>
-        </Nav>
+        </DesktopNav>
         <BurgerNav>
-          <Icon id={"shopping-bag"}></Icon>
-          <Icon id={"search"}></Icon>
-          <Icon onClick={() => setShowMobileMenu(true)} id={"menu"}></Icon>
+          <UnstyledButton>
+            <Icon id={"shopping-bag"}></Icon>
+            <VisuallyHidden>Open cart</VisuallyHidden>
+          </UnstyledButton>
+          <UnstyledButton>
+            <Icon id={"search"}></Icon>
+            <VisuallyHidden>Search</VisuallyHidden>
+          </UnstyledButton>
+          <UnstyledButton onClick={() => setShowMobileMenu(true)}>
+            <Icon id={"menu"}></Icon>
+            <VisuallyHidden>Menu</VisuallyHidden>
+          </UnstyledButton>
         </BurgerNav>
+        <Filler></Filler>
       </MainHeader>
 
       <MobileMenu
@@ -54,10 +66,20 @@ const MainHeader = styled.div`
 
   @media ${QUERIES.tabletAndDown} {
     border-top: 4px solid ${COLORS.gray[900]};
+    padding: 20px 32px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  @media ${QUERIES.phoneAndDown} {
+    border-top: 4px solid ${COLORS.gray[900]};
+    padding: 20px 16px;
+    align-items: center;
+    justify-content: space-between;
   }
 `;
 
-const Nav = styled.nav`
+const DesktopNav = styled.nav`
   display: flex;
   gap: 48px;
   margin: 0px 48px;
@@ -65,10 +87,6 @@ const Nav = styled.nav`
   @media ${QUERIES.tabletAndDown} {
     display: none;
   }
-`;
-
-const Side = styled.div`
-  flex: 1;
 `;
 
 const BurgerNav = styled.div`
@@ -80,6 +98,29 @@ const BurgerNav = styled.div`
     flex-direction: row;
     justify-content: flex-end;
     gap: 32px;
+  }
+
+  @media ${QUERIES.phoneAndDown} {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 16px;
+  }
+`;
+
+const LogoWrapper = styled.div`
+  flex: 1;
+
+  @media ${QUERIES.tabletAndDown} {
+    display: revert;
+  }
+`;
+
+const Filler = styled.div`
+  flex: 1;
+
+  @media ${QUERIES.tabletAndDown} {
+    display: none;
   }
 `;
 
