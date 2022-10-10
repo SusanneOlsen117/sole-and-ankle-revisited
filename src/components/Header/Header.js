@@ -28,8 +28,10 @@ const Header = () => {
           <NavLink href="/sale">Sale</NavLink>
           <NavLink href="/new">New&nbsp;Releases</NavLink>
           <NavLink href="/men">Men</NavLink>
+          <NavLink href="/men">Men</NavLink>
           <NavLink href="/women">Women</NavLink>
           <NavLink href="/kids">Kids</NavLink>
+          <NavLink href="/collections">Collections</NavLink>
           <NavLink href="/collections">Collections</NavLink>
         </DesktopNav>
         <BurgerNav>
@@ -81,7 +83,7 @@ const MainHeader = styled.div`
 
 const DesktopNav = styled.nav`
   display: flex;
-  gap: clamp(3rem, 20vw - 11.5rem, 10rem);
+  gap: clamp(1rem, 9vw - 4.5rem, 3.5rem);
   margin: 0px 48px;
 
   @media ${QUERIES.tabletAndDown} {
