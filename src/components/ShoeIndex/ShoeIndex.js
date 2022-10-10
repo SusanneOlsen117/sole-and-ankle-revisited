@@ -9,7 +9,7 @@ import Spacer from "../Spacer";
 import ShoeSidebar from "../ShoeSidebar";
 import ShoeGrid from "../ShoeGrid";
 
-const ShoeBreadcrumbs = ({}) => {
+const ShoeBreadcrumbs = () => {
   return (
     <Breadcrumbs>
       <Breadcrumbs.Crumb href="/">Home</Breadcrumbs.Crumb>
