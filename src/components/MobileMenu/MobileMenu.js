@@ -2,7 +2,7 @@
 import React from "react";
 import styled from "styled-components/macro";
 import { DialogOverlay, DialogContent } from "@reach/dialog";
-import { COLORS } from "../../constants";
+import { COLORS, WEIGHTS } from "../../constants";
 
 import UnstyledButton from "../UnstyledButton";
 import Icon from "../Icon";
@@ -18,26 +18,14 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
             <Icon id={"close"}></Icon>
           </CloseButton>
         </Header>
-        <Menu>
-          <MenuLink style={{ "--color": COLORS.secondary }} href="/sale">
-            Sale
-          </MenuLink>
-          <MenuLink style={{ "--color": COLORS.gray[900] }} href="/new">
-            New&nbsp;Releases
-          </MenuLink>
-          <MenuLink style={{ "--color": COLORS.gray[900] }} href="/men">
-            Men
-          </MenuLink>
-          <MenuLink style={{ "--color": COLORS.gray[900] }} href="/women">
-            Women
-          </MenuLink>
-          <MenuLink style={{ "--color": COLORS.gray[900] }} href="/kids">
-            Kids
-          </MenuLink>
-          <MenuLink style={{ "--color": COLORS.gray[900] }} href="/collections">
-            Collections
-          </MenuLink>
-        </Menu>
+        <Nav>
+          <NavLink href="/sale">Sale</NavLink>
+          <NavLink href="/new">New&nbsp;Releases</NavLink>
+          <NavLink href="/men">Men</NavLink>
+          <NavLink href="/women">Women</NavLink>
+          <NavLink href="/kids">Kids</NavLink>
+          <NavLink href="/collections">Collections</NavLink>
+        </Nav>
         <Footer>
           <FooterLink href="/terms">Terms and Conditions</FooterLink>
           <FooterLink href="/privacy">Privacy Policy</FooterLink>
@@ -54,7 +42,7 @@ const Overlay = styled(DialogOverlay)`
   right: 0;
   bottom: 0;
   left: 0;
-  background: hsla(220, 5%, 40%, 0.8);
+  background: hsla(220deg 5% 40% / 0.8);
 
   display: flex;
   justify-content: flex-end;
@@ -62,7 +50,7 @@ const Overlay = styled(DialogOverlay)`
 `;
 
 const Content = styled(DialogContent)`
-  width: 80%;
+  width: 300px;
   height: 100%;
   background: white;
 
@@ -77,22 +65,31 @@ const Header = styled.div`
   flex-basis: 0;
 `;
 
-const CloseButton = styled(UnstyledButton)``;
+const CloseButton = styled(UnstyledButton)`
+  position: absolute;
+  top: 10px;
+  right: 0;
+  padding: 16px;
+`;
 
-const Menu = styled.nav`
+const Nav = styled.nav`
   display: flex;
   flex-direction: column;
   margin-top: auto;
   margin-bottom: auto;
-  gap: 22px;
+  gap: 16px;
 `;
 
-const MenuLink = styled.a`
-  color: var(--color);
+const NavLink = styled.a`
   font-size: calc(18 / 16 * 1rem);
   text-decoration: none;
-  font-weight: 600;
   text-transform: uppercase;
+  color: ${COLORS.gray[900]};
+  font-weight: ${WEIGHTS.medium};
+
+  &:first-of-type {
+    color: ${COLORS.secondary};
+  }
 }
 `;
 
